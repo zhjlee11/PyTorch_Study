@@ -1,0 +1,5 @@
+================ Training Loss (Sun Jun 28 13:56:35 2020) ================
+================ Training Loss (Sun Jun 28 13:58:35 2020) ================
+(epoch: 1, iters: 100, time: 2.998, data: 2.261) G_GAN: 1.458 G_L1: 30.583 D_real: 0.364 D_fake: 0.414 
+(epoch: 2, iters: 92, time: 2.100, data: 0.000) G_GAN: 2.476 G_L1: 26.628 D_real: 0.161 D_fake: 0.149 
+(epoch: 3, iters: 84, time: 1.810, data: 0.000) G_GAN: 3.217 G_L1: 27.457 D_real: 0.073 D_fake: 0.166 
