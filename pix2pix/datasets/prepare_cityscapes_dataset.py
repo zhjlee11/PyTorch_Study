@@ -15,7 +15,7 @@ python prepare_cityscapes_dataset.py --gitFine_dir ./gtFine/ --leftImg8bit_dir .
 """
 
 def load_resized_img(path):
-    return Image.open(path).convert('RGB').resize((256, 256))
+    return Image.open(path).convert('RGBA').resize((256, 256))
 
 def check_matching_pair(segmap_path, photo_path):
     segmap_identifier = os.path.basename(segmap_path).replace('_gtFine_color', '')
@@ -50,17 +50,17 @@ def process_cityscapes(gtFine_dir, leftImg8bit_dir, output_dir, phase):
         photo = load_resized_img(photo_path)
 
         # data for pix2pix where the two images are placed side-by-side
-        sidebyside = Image.new('RGB', (512, 256))
+        sidebyside = Image.new('RGBA', (512, 256))
         sidebyside.paste(segmap, (256, 0))
         sidebyside.paste(photo, (0, 0))
-        savepath = os.path.join(savedir, "%d.jpg" % i)
-        sidebyside.save(savepath, format='JPEG', subsampling=0, quality=100)
+        savepath = os.path.join(savedir, "%d.png" % i)
+        sidebyside.save(savepath, format='PNG', subsampling=0, quality=100)
 
         # data for cyclegan where the two images are stored at two distinct directories
-        savepath = os.path.join(savedir + 'A', "%d_A.jpg" % i)
-        photo.save(savepath, format='JPEG', subsampling=0, quality=100)
-        savepath = os.path.join(savedir + 'B', "%d_B.jpg" % i)
-        segmap.save(savepath, format='JPEG', subsampling=0, quality=100)
+        savepath = os.path.join(savedir + 'A', "%d_A.png" % i)
+        photo.save(savepath, format='PNG', subsampling=0, quality=100)
+        savepath = os.path.join(savedir + 'B', "%d_B.png" % i)
+        segmap.save(savepath, format='PNG', subsampling=0, quality=100)
         
         if i % (len(segmap_paths) // 10) == 0:
             print("%d / %d: last image saved at %s, " % (i, len(segmap_paths), savepath))

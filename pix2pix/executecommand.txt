@@ -1,2 +1,2 @@
-python train.py --dataroot ./datasets/imgs --name imgs_pix2pix --model pix2pix --direction BtoA --display_id 0
-python test.py --dataroot ./datasets/imgs/ --direction BtoA --model pix2pix --name imgs_pix2pix
+python train.py --dataroot ./datasets/imgs --name project_gaea_pix2pix --model pix2pix --direction AtoB --display_id 0
+python test.py --dataroot ./datasets/imgs/ --direction BtoA --model pix2pix --name project_gaea_pix2pix

@@ -54,7 +54,7 @@ class ColorizationDataset(BaseDataset):
             B_paths (str) - - image paths (same as A_paths)
         """
         path = self.AB_paths[index]
-        im = Image.open(path).convert('RGB')
+        im = Image.open(path).convert('RGBA')
         im = self.transform(im)
         im = np.array(im)
         lab = color.rgb2lab(im).astype(np.float32)

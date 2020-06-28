@@ -31,8 +31,10 @@ class UnalignedDataset(BaseDataset):
         self.A_size = len(self.A_paths)  # get the size of dataset A
         self.B_size = len(self.B_paths)  # get the size of dataset B
         btoA = self.opt.direction == 'BtoA'
-        input_nc = self.opt.output_nc if btoA else self.opt.input_nc       # get the number of channels of input image
-        output_nc = self.opt.input_nc if btoA else self.opt.output_nc      # get the number of channels of output image
+        #input_nc = self.opt.output_nc if btoA else self.opt.input_nc       # get the number of channels of input image
+        #output_nc = self.opt.input_nc if btoA else self.opt.output_nc      # get the number of channels of output image
+        input_nc=4
+        output_nc=4
         self.transform_A = get_transform(self.opt, grayscale=(input_nc == 1))
         self.transform_B = get_transform(self.opt, grayscale=(output_nc == 1))
 
@@ -54,8 +56,8 @@ class UnalignedDataset(BaseDataset):
         else:   # randomize the index for domain B to avoid fixed pairs.
             index_B = random.randint(0, self.B_size - 1)
         B_path = self.B_paths[index_B]
-        A_img = Image.open(A_path).convert('RGB')
-        B_img = Image.open(B_path).convert('RGB')
+        A_img = Image.open(A_path).convert('RGBA')
+        B_img = Image.open(B_path).convert('RGBA')
         # apply image transformation
         A = self.transform_A(A_img)
         B = self.transform_B(B_img)
